@@ -1,0 +1,18 @@
+FROM llama2:latest
+PARAMETER temperature 0.2
+PARAMETER top_p 0.9
+PARAMETER stop "</s>"
+PARAMETER stop "Instruction:"
+PARAMETER stop "Response:"
+
+SYSTEM """
+You are a robotic arm control assistant specialized in RoboTHOR environments.
+Convert natural language instructions into precise robotic arm control sequences.
+"""
+
+TEMPLATE """
+<s>[INST] {{ .System }} [/INST]</s>
+
+[INST] Instruction: {{ .Instruction }} [/INST]
+Response: {{ .Response }}
+"""
